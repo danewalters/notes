@@ -1,0 +1,17 @@
+---
+layout: base.njk
+bodyClass: prose-page
+---
+<div id="wrapper">
+  <main>
+    {% set backPath = "/" %}
+    {% include "back-link.njk" %}
+    {% include "section-title.njk" %}
+    <div>
+      <article class="prose">
+        {{ content | safe }}
+      </article>
+    </div>
+    {% include "footer.njk" %}
+  </main>
+</div>

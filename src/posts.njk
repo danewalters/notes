@@ -1,0 +1,18 @@
+---
+layout: base.njk
+bodyClass: blog
+title: Posts
+heading: Posts
+subtitle: Learning notes and bits of life
+permalink: /posts/
+---
+<div id="wrapper">
+  {% set backPath = "/" %}
+  {% include "back-link.njk" %}
+  {% include "section-title.njk" %}
+  <main class="layout-list">
+    {% set posts = collections.posts %}
+    {% include "post-list.njk" %}
+  </main>
+  {% include "footer.njk" %}
+</div>

@@ -1,0 +1,19 @@
+---
+layout: base.njk
+bodyClass: tag-list
+title: Tags
+permalink: /tags/
+---
+<div id="wrapper">
+  {% set backPath = "/" %}
+  {% include "back-link.njk" %}
+  <main>
+    <h1 class="title">Tags</h1>
+    <div class="tags">
+      {% for tag in collections.tagList %}
+      <a href="/tags/{{ tag.slug }}/"># {{ tag.name | lower }}</a>
+      {% endfor %}
+    </div>
+  </main>
+  {% include "footer.njk" %}
+</div>

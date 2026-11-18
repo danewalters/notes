@@ -1,0 +1,46 @@
+---
+layout: base.njk
+bodyClass: post
+---
+{% set headings = content | headings %}
+<div id="wrapper">
+  <div id="blank"></div>
+  <aside>
+    {% if toc !== false and headings.length %}
+    <nav>
+      <ul>
+        {% for heading in headings %}
+        <li><a class="{{ heading.className }}" href="#{{ heading.id }}">{{ heading.title | safe }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    {% endif %}
+    <button id="back-to-top" aria-label="back to top">{{ "arrow-up" | icon | safe }}</button>
+  </aside>
+  <main>
+    {% set backPath = "/posts/" %}
+    {% include "back-link.njk" %}
+    <div>
+      <article class="prose">
+        <h1>{{ title }}</h1>
+        <div id="post-info">
+          <div id="date">
+            <span id="publish">{{ page.date | readableDate }}</span>
+            {% if updated %}
+            <span>Updated on <span id="updated">{{ updated | readableDate }}</span></span>
+            {% endif %}
+          </div>
+          {% if tags %}
+          <div id="tags">
+            {% for tag in tags %}
+            <a href="/tags/{{ tag | tagSlug }}/"><span>#</span>{{ tag }}</a>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+        {{ content | safe }}
+      </article>
+    </div>
+    {% include "footer.njk" %}
+  </main>
+</div>

@@ -1,0 +1,45 @@
+{%- set pageTitle = title or site.title -%}
+{%- set pageDescription = description or site.description -%}
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>{{ pageTitle }}</title>
+  <meta name="description" content="{{ pageDescription }}">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:type" content="{{ 'article' if bodyClass == 'post' else 'website' }}">
+  <meta property="og:title" content="{{ pageTitle }}">
+  <meta property="og:description" content="{{ pageDescription }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+  <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml">
+  <link rel="stylesheet" href="/assets/main.css">
+  {%- if content | hasMath %}
+  <link rel="stylesheet" href="/assets/katex/katex.min.css">
+  {%- endif %}
+</head>
+
+<body class="{{ bodyClass }}">
+  <script>
+    const theme = sessionStorage.getItem('theme');
+    const match = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if ((theme && theme == 'dark') || (!theme && match)) document.body.classList.add('dark');
+  </script>
+  <div id="copy-cfg" hidden data-copy-icon="{{ 'copy' | icon }}" data-check-icon="{{ 'check' | icon }}"></div>
+  {{ content | safe }}
+  <script src="/assets/main.js"></script>
+  {%- if content | hasMermaid %}
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.17.2/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  {%- endif %}
+</body>
+
+</html>

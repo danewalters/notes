@@ -1,0 +1,23 @@
+---
+layout: base.njk
+bodyClass: tag-single
+pagination:
+  data: collections.tagList
+  size: 1
+  alias: tag
+permalink: "/tags/{{ tag.slug }}/"
+eleventyComputed:
+  title: "# {{ tag.name | safe }}"
+---
+<div id="wrapper">
+  {% set backPath = "/tags/" %}
+  {% include "back-link.njk" %}
+  <main class="layout-list">
+    <div class="title">
+      <span># {{ tag.name }}</span>
+    </div>
+    {% set posts = tag.posts %}
+    {% include "post-list.njk" %}
+  </main>
+  {% include "footer.njk" %}
+</div>

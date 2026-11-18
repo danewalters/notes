@@ -1,0 +1,20 @@
+{% set feedUrl = site.url + "/feed.xml" %}
+<footer>
+  <div class="left">
+    <div class="copyright">
+      {{ site.copyright }}
+      <span>|</span>
+      Built with <a href="https://www.11ty.dev" rel="noreferrer" target="_blank">11ty</a> and <a href="https://github.com/isunjn/serene" rel="noreferrer" target="_blank">serene</a>
+    </div>
+  </div>
+  <div class="right">
+    <a id="rss-btn" href="/feed.xml">RSS</a>
+    {% include "theme-toggle.njk" %}
+  </div>
+</footer>
+<dialog id="rss-mask">
+  <div>
+    <a href="{{ feedUrl }}">{{ feedUrl }}</a>
+    <button autofocus aria-label="copy" data-link="{{ feedUrl }}">{{ "copy" | icon | safe }}</button>
+  </div>
+</dialog>

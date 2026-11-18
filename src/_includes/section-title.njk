@@ -1,0 +1,6 @@
+{% if heading or subtitle %}
+<div class="section-title">
+  {% if heading %}<h1>{{ heading }}</h1>{% endif %}
+  {% if subtitle %}<p>{{ subtitle }}</p>{% endif %}
+</div>
+{% endif %}
